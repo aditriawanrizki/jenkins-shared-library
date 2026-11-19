@@ -1,7 +1,7 @@
+
 package com.example.pipeline
 
 class PipelineConfig implements Serializable {
-
     String appName
     String registry
     String registryCredentialsId
@@ -14,10 +14,6 @@ class PipelineConfig implements Serializable {
             config.registryCredentialsId ?: 'nexus-docker-credentials'
         this.deployBranch = config.deployBranch ?: 'main'
 
-        validate()
-    }
-
-    private void validate() {
         if (!appName?.trim()) {
             throw new IllegalArgumentException('appName is required')
         }
