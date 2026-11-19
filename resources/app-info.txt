@@ -1,0 +1,3 @@
+Application: Spring Boot DevSecOps
+Runtime: Java 21
+Health endpoint: /actuator/health
