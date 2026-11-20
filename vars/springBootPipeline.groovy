@@ -43,9 +43,11 @@ def call(Map config = [:]) {
                     script {
                         deployApp([
                             appName: pipelineConfig.appName,
-                            registry: pipelineConfig.registry,
-                            registryCredentialsId:
-                                pipelineConfig.registryCredentialsId
+			    registry: pipelineConfig.registry,
+			    remoteRegistry: pipelineConfig.remoteRegistry,
+			    registryCredentialsId:
+			        pipelineConfig.registryCredentialsId,
+			    sshCredentialsId: pipelineConfig.sshCredentialsId
                         ])
                     }
                 }

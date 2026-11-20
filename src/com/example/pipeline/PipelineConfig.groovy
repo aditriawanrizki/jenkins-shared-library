@@ -6,6 +6,8 @@ class PipelineConfig implements Serializable {
     String registry
     String registryCredentialsId
     String deployBranch
+    String sshCredentialsId
+    String remoteRegistry
 
     PipelineConfig(Map config) {
         this.appName = config.appName ?: 'springboot-devsecops-app'
@@ -13,6 +15,9 @@ class PipelineConfig implements Serializable {
         this.registryCredentialsId =
             config.registryCredentialsId ?: 'nexus-docker-credentials'
         this.deployBranch = config.deployBranch ?: 'main'
+	this.sshCredentialsId =
+	    config.sshCredentialsId ?: 'deployment-ssh-credentials'
+	this.remoteRegistry = config.remoteRegistry ?: 'nexus:8083'
 
         if (!appName?.trim()) {
             throw new IllegalArgumentException('appName is required')
@@ -31,5 +36,13 @@ class PipelineConfig implements Serializable {
         if (!deployBranch?.trim()) {
             throw new IllegalArgumentException('deployBranch is required')
         }
+
+	if (!sshCredentialsId?.trim()) {
+	    throw new IllegalArgumentException('sshCredentialsId is required')
+	}
+
+	if (!remoteRegistry?.trim()) {
+	    throw new IllegalArgumentException('remoteRegistry is required')
+	}
     }
 }
