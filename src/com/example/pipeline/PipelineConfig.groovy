@@ -17,7 +17,7 @@ class PipelineConfig implements Serializable {
         this.deployBranch = config.deployBranch ?: 'main'
 	this.sshCredentialsId =
 	    config.sshCredentialsId ?: 'deployment-ssh-credentials'
-	this.remoteRegistry = config.remoteRegistry ?: 'nexus:8083'
+	this.remoteRegistry = config.remoteRegistry ?: 'localhost:8083'
 
         if (!appName?.trim()) {
             throw new IllegalArgumentException('appName is required')
