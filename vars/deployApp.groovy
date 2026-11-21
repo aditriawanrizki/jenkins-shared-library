@@ -34,10 +34,10 @@ def call(Map config) {
             docker logout ${config.registry}
 
             # Authenticate remote Docker client to Nexus
-            printf '%s\n%s\n' "\$NEXUS_USER" "\$NEXUS_PASSWORD" | \
-		ssh -i "\$SSH_KEY" -p ${remotePort} -o BatchMode=yes \
-		"\$SSH_USER@${remoteHost}" \
-		"read -r nexus_user; docker login ${config.remoteRegistry} --username \"\$nexus_user\" --password-stdin"
+            printf '%s' "\$NEXUS_PASSWORD" | \
+                ssh -i "\$SSH_KEY" -p ${remotePort} -o BatchMode=yes \
+                "\$SSH_USER@${remoteHost}" \
+                "docker login ${config.remoteRegistry} --username '\$NEXUS_USER' --password-stdin"
 
             # Pull the new image on the deployment target
             ssh -i "\$SSH_KEY" -p ${remotePort} \
